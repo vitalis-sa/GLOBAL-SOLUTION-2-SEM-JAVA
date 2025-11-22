@@ -1,11 +1,17 @@
 package br.com.vitalis.resource;
 
 import br.com.vitalis.dao.FuncionarioDao;
+import br.com.vitalis.dao.RecomendacaoIADao;
+import br.com.vitalis.dao.TesteSituacaoDao;
 import br.com.vitalis.dto.dtoFuncionario.CadastroFuncionarioDto;
 import br.com.vitalis.dto.dtoFuncionario.DetalhesFuncionarioDto;
+import br.com.vitalis.dto.dtoai.DetalhesRecomendacaoDto;
+import br.com.vitalis.dto.dtoteste.DetalhesTesteSituacaoDto;
 import br.com.vitalis.exception.EntidadeNaoEncontradaException;
 import br.com.vitalis.model.Departamento;
 import br.com.vitalis.model.Funcionario;
+import br.com.vitalis.model.RecomendacaoIA;
+import br.com.vitalis.model.TesteSituacao;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -26,6 +32,12 @@ public class FuncionarioResource {
 
     @Inject
     private ModelMapper mapper;
+
+    @Inject
+    private RecomendacaoIADao recomendacaoDao;
+
+    @Inject
+    private TesteSituacaoDao testeSituacaoDao;
 
 @POST
     public Response create(@Valid CadastroFuncionarioDto dto, @Context UriInfo uriInfo) throws SQLException, EntidadeNaoEncontradaException {
@@ -69,6 +81,26 @@ public class FuncionarioResource {
     }
 
     @GET
+    @Path("{id}/recomendacao-atual")
+    public Response getRecomendacaoAtual(@PathParam("id") long id) throws SQLException {
+        try {
+            funcionarioDao.buscar(id);
+        } catch (EntidadeNaoEncontradaException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+
+        RecomendacaoIA rec = recomendacaoDao.buscarUltimaPorFuncionario(id);
+        
+        if (rec != null) {
+            return Response.ok(mapper.map(rec, DetalhesRecomendacaoDto.class)).build();
+        } else {
+            // 204 No Content se o funcionário existe mas ainda não tem recomendações
+            return Response.noContent().build();
+        }
+    }
+
+
+    @GET
     @Path("{id}")
     public Response buscarPorId(@PathParam("id") long id) throws SQLException {
         try {
@@ -77,6 +109,22 @@ public class FuncionarioResource {
         } catch (EntidadeNaoEncontradaException e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+    }
+
+    @GET
+    @Path("{id}/testes-situacao")
+    public Response getTestesDoFuncionario(@PathParam("id") long id) throws SQLException {
+        // 1. Verifica se o funcionário existe (opcional, mas boa prática)
+        try {
+            funcionarioDao.buscar(id);
+        } catch (EntidadeNaoEncontradaException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+
+        // 2. Busca a lista
+        List<TesteSituacao> testes = testeSituacaoDao.listarPorFuncionario(id);
+
+        return Response.ok(testes.stream().map(t -> mapper.map(t, DetalhesTesteSituacaoDto.class)).collect(Collectors.toList())).build();
     }
 
     @DELETE

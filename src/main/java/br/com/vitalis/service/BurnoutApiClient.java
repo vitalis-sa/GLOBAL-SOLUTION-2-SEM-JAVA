@@ -9,7 +9,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-@RegisterRestClient(baseUri = "https://equilibrium-pythonandai-906663117168.us-west1.run.app/")
+@RegisterRestClient(baseUri = "http://127.0.0.1:5000/")
 public interface BurnoutApiClient {
 
     // Endpoint que calcula o burnout e retorna conselhos para o funcionário

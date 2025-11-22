@@ -104,6 +104,23 @@ public class FuncionarioDao {
         }
     }
 
+    public Funcionario buscarPorCpf(String cpf) throws SQLException, EntidadeNaoEncontradaException {
+        try (Connection conexao = dataSource.getConnection()) {
+            // Reutiliza a query com JOINs e filtra pelo CPF
+            PreparedStatement stmt = conexao.prepareStatement(SELECT_FUNCIONARIO_SQL + "WHERE f.NR_CPF = ?");
+            stmt.setString(1, cpf);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (!rs.next()) {
+                throw new EntidadeNaoEncontradaException("Funcionário não encontrado com o CPF informado.");
+            }
+            
+            return parseFuncionarioCompleto(rs);
+        }
+    }
+
+
     public Funcionario buscar(long id) throws SQLException, EntidadeNaoEncontradaException {
         try (Connection conexao = dataSource.getConnection()) {
             PreparedStatement stmt = conexao.prepareStatement(SELECT_FUNCIONARIO_SQL + "WHERE f.ID_FUNC = ?");

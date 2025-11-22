@@ -76,6 +76,7 @@ public class TesteSituacaoDao {
             stmt.executeUpdate();
         }
     }
+    
 
     public TesteSituacao buscar(long id) throws SQLException, EntidadeNaoEncontradaException {
         try (Connection conexao = dataSource.getConnection()) {
