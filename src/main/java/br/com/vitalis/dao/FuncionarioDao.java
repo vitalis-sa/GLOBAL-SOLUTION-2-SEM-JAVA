@@ -226,7 +226,7 @@ public class FuncionarioDao {
             conexao = dataSource.getConnection();
             conexao.setAutoCommit(false);
 
-            // Remover dependências
+            // 1. Remover dependências (Email e Telefone)
             PreparedStatement stmtEmail = conexao.prepareStatement("DELETE FROM T_EQUILIBRIUM_EMAIL WHERE ID_FUNC = ?");
             stmtEmail.setLong(1, id);
             stmtEmail.executeUpdate();
@@ -237,13 +237,21 @@ public class FuncionarioDao {
             stmtTel.executeUpdate();
             stmtTel.close();
 
-            // Remover Testes de Situação (Opcional, se quiser limpar tudo)
+            // 2. NOVO: Remover Recomendações da IA (Filha de Teste Situação)
+            // Como a recomendação está ligada ao teste e não direto ao funcionário, precisamos de um subselect
+            String deleteRecIA = "DELETE FROM T_EQUILIBRIUM_REC_IA WHERE ID_TESTE IN (SELECT ID_TESTE FROM T_EQUILIBRIUM_TESTE_SITUACAO WHERE ID_FUNC = ?)";
+            PreparedStatement stmtRecIA = conexao.prepareStatement(deleteRecIA);
+            stmtRecIA.setLong(1, id);
+            stmtRecIA.executeUpdate();
+            stmtRecIA.close();
+
+            // 3. Remover Testes de Situação
             PreparedStatement stmtTest = conexao.prepareStatement("DELETE FROM T_EQUILIBRIUM_TESTE_SITUACAO WHERE ID_FUNC = ?");
             stmtTest.setLong(1, id);
             stmtTest.executeUpdate();
             stmtTest.close();
 
-            // Remover Funcionario
+            // 4. Remover Funcionario
             PreparedStatement stmtFunc = conexao.prepareStatement("DELETE FROM T_EQUILIBRIUM_FUNCIONARIO WHERE ID_FUNC = ?");
             stmtFunc.setLong(1, id);
             int linhas = stmtFunc.executeUpdate();
