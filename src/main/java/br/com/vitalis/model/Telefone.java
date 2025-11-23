@@ -6,8 +6,6 @@ public class Telefone {
     private Integer ddd;      // NR_DDD
     private Long numero;      // NR_TELEFONE
     private String status;    // ST_TELEFONE (A/I)
-    
-    // Campo 'tipo' REMOVIDO pois não existe na tabela T_EQUILIBRIUM_TEL
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
