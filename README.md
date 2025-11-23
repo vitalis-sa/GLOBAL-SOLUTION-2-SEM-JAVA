@@ -2,6 +2,9 @@
 
 > **Status do Projeto:** 🚀 Deployado na nuvem
 
+* **Link do deploy do frontend:** [https://equilibrium-906663117168.us-central1.run.app/](https://equilibrium-906663117168.us-central1.run.app/)
+* **Link do deploy do backend:** [https://equilibrium-backend-906663117168.us-central1.run.app](https://equilibrium-backend-906663117168.us-central1.run.app)
+
 ## 📋 Sumário
 
 1. [Sobre o Projeto](#-sobre-o-projeto)
@@ -113,6 +116,9 @@ O Front-end se comunica com a API Java através das seguintes rotas principais:
 
 ## 🚀 Como Usar
 
+* **Link do deploy do frontend:** [https://equilibrium-906663117168.us-central1.run.app/](https://equilibrium-906663117168.us-central1.run.app/)
+* **Link do deploy do backend:** [https://equilibrium-backend-906663117168.us-central1.run.app](https://equilibrium-backend-906663117168.us-central1.run.app)
+
 1.  **Login:** Acesse a plataforma e entre com seu CPF cadastrado.
 2.  **Novo funcionario:** Clique em "Novo Func." para cadastrar um novo funcionário.
 3.  **Meu Perfil:** Clique em meu Perfil para visualizar seus dados, assim como as recomendações pra sua saúde mental e seu burnoutScore.
@@ -158,6 +164,7 @@ Este projeto foi desenvolvido pela equipe **Vitalis** para a Global Solution (2�
 
 * **Repositório GitHub:** [https://github.com/vitalis-sa/GLOBAL-SOLUTION-2-SEM-JAVA](https://github.com/vitalis-sa/GLOBAL-SOLUTION-2-SEM-JAVA)
 * **Vídeo Demonstração:** [https://youtu.be/V0Kyn5uI7Lc](https://youtu.be/V0Kyn5uI7Lc)
-
+* **Link do deploy do frontend:** [https://equilibrium-906663117168.us-central1.run.app/](https://equilibrium-906663117168.us-central1.run.app/)
+* **Link do deploy do backend:** [https://equilibrium-backend-906663117168.us-central1.run.app](https://equilibrium-backend-906663117168.us-central1.run.app)
 ---
 &copy; 2024 Equilibrium. Todos os direitos reservados.
