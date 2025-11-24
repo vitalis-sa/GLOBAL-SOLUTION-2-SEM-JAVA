@@ -163,6 +163,7 @@ Este projeto foi desenvolvido pela equipe **Vitalis** para a Global Solution (2�
 ## 🔗 Links Importantes
 
 * **Repositório GitHub:** [https://github.com/vitalis-sa/GLOBAL-SOLUTION-2-SEM-JAVA](https://github.com/vitalis-sa/GLOBAL-SOLUTION-2-SEM-JAVA)
+* **Vídeo Pitch:** [https://www.youtube.com/watch?v=IkbleUAV3CY](https://www.youtube.com/watch?v=IkbleUAV3CY)
 * **Vídeo Demonstração:** [https://youtu.be/V0Kyn5uI7Lc](https://youtu.be/V0Kyn5uI7Lc)
 * **Link do deploy do frontend:** [https://equilibrium-906663117168.us-central1.run.app/](https://equilibrium-906663117168.us-central1.run.app/)
 * **Link do deploy do backend:** [https://equilibrium-backend-906663117168.us-central1.run.app](https://equilibrium-backend-906663117168.us-central1.run.app)
